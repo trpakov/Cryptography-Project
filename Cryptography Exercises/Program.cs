@@ -13,11 +13,11 @@ namespace Cryptography_Exercises
             do
             {
                 Console.WriteLine("=============================");
-                Console.WriteLine("Изберете метод за криптиране:\n1. Шифър на Цезар\n2. Директно заместване\n3. Многоазбучно заместване\n0. Изход\n");
+                Console.WriteLine("Изберете метод за криптиране:\n1. Шифър на Цезар\n2. Директно заместване\n3. Многоазбучно заместване\n4. Матрично заместване\n0. Изход\n");
                 Console.WriteLine("=============================");
                 var key = Console.ReadKey(true);
 
-                if (!"0123".ToCharArray().Contains(key.KeyChar)) continue;
+                if (!"01234".ToCharArray().Contains(key.KeyChar)) continue;
                 if (key.KeyChar == '0') Environment.Exit(0);
 
                 Console.WriteLine("Въведете явния текст:\n");
@@ -31,18 +31,29 @@ namespace Cryptography_Exercises
                     switch (key.KeyChar)
                     {
                         case '1':
+                            if(text == "")
+                                text = CaesarCipher.TestText;
+
                             encryptionResult = CaesarCipher.Encrypt(text);
                             decryptionResult = CaesarCipher.Decrypt(encryptionResult);
 
-                            Console.WriteLine("\n\nРезултат от криптирането:\n");
+                            Console.WriteLine("\n\nЯвен текст:\n");
+                            Console.WriteLine(text + '\n');
+                            Console.WriteLine("\nРезултат от криптирането:\n");
                             Console.WriteLine(encryptionResult + '\n');
                             Console.WriteLine("\nРезултат от декриптирането:\n");
                             Console.WriteLine(decryptionResult + "\n\n");
                             break;
 
                         case '2':
+                            if(text == "")
+                                text = DirectSubstitution.TestText;
+
                             directSubstResult = DirectSubstitution.Encrypt(text);
                             decryptionResult = DirectSubstitution.Decrypt(directSubstResult.Item2); // или (directSubsResult.Item1, false), ако интервалите са некриптирани
+
+                            Console.WriteLine("\n\nЯвен текст:\n");
+                            Console.WriteLine(text + '\n');
 
                             Console.WriteLine("\n\nРезултат от криптирането (без шифроване на интервалите):\n");
                             Console.WriteLine(directSubstResult.Item1 + '\n');
@@ -54,8 +65,14 @@ namespace Cryptography_Exercises
                             break;
 
                         case '3':
+                            if(text == "")
+                                text = PolyalphabeticSubstitution.TestText;
+
                             encryptionResult = PolyalphabeticSubstitution.Encrypt(text);
                             decryptionResult = PolyalphabeticSubstitution.Decrypt(encryptionResult);
+
+                            Console.WriteLine("\n\nЯвен текст:\n");
+                            Console.WriteLine(text + '\n');
 
                             Console.WriteLine("\n\nРезултат от криптирането:\n");
                             Console.WriteLine(encryptionResult + '\n');
@@ -64,7 +81,20 @@ namespace Cryptography_Exercises
                             break;
 
                         case '4':
-                            throw new NotImplementedException();
+                            if(text == "")
+                                text = MatrixSubstitution.TestText;
+
+                            encryptionResult = MatrixSubstitution.Encrypt(text);
+                            decryptionResult = MatrixSubstitution.Decrypt(encryptionResult);
+
+                            Console.WriteLine("\n\nЯвен текст:\n");
+                            Console.WriteLine(text + '\n');
+
+                            Console.WriteLine("\n\nРезултат от криптирането:\n");
+                            Console.WriteLine(encryptionResult + '\n');
+                            Console.WriteLine("\nРезултат от декриптирането:\n");
+                            Console.WriteLine(decryptionResult + "\n\n");
+                            break;
                     }
                 }
                 catch (ArgumentException e)
@@ -215,8 +245,8 @@ namespace Cryptography_Exercises
 
         static PolyalphabeticSubstitution()
         {
-            key = GenerateKey();
-            key = "МОНИТОР";
+            key = GenerateKey(); // random key
+            key = "МОНИТОР"; // explicit test key
         }
 
         private static string GenerateKey()
@@ -274,6 +304,169 @@ namespace Cryptography_Exercises
             return new string(result);
         }
 
+    }
+
+    static class MatrixSubstitution
+    {
+        public static char[] M {get; private set;} = "0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ -:,".ToCharArray();
+        private static char[,] A;
+
+        private static string key;
+        public static string Key
+        {
+            get => key;
+            set
+            {
+                if (key.Length != 5)
+                    throw new ArgumentOutOfRangeException(key, "Ключът трябва да е с дължина от 5 символа.");
+
+                foreach (var ch in key)
+                {
+                    if(!M.Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nВъведеният ключ съдържа символа '{ch.ToString()}', който не е част от множеството допустими символи.");
+                }
+
+                key = value;
+            }
+        }
+
+        public static char[,] APrime;
+        private static Random rng = new Random();
+        private static int counter;
+        public static string TestText {get; set;} = "ПРЕХВЪРЛЯТ СЕ В АРХИВ СЛЕДНИТЕ ДОКУМЕНТИ Б 36481 312 - АВТ, М 82134 656 - АКД, К 44251 348 - ВРН, Т 11426 273 - ММИ";
+
+        static MatrixSubstitution()
+        {
+            key = GenerateKey(); // random key
+            key = "АРХИВ"; // explicit test key
+
+            A = new char[M.Length, M.Length];
+
+            for (int i = 0; i < A.GetLength(0); i++)
+			{
+                for (int k = 0; k < A.GetLength(1); k++)
+			    {
+                    A[i,k] = M[(k + i) % M.Length];
+			    }
+			}
+
+            APrime = new char[key.Length+1, M.Length];
+
+            for (int k = 0; k < M.Length; k++)
+			{
+                APrime[0,k] = M[k];
+			}
+
+            for (int i = 1; i < APrime.GetLength(0); i++)
+			{
+                int correctRow = 0;
+
+                for (int q = 1; q < A.GetLength(0); q++)
+			    {
+                    if(A[q,0] == key[(i-1) % key.Length])
+                    {
+                        correctRow = q;
+                        break;
+                    }
+			    }
+
+                for (int k = 0; k < APrime.GetLength(1); k++)
+			    {
+                    APrime[i,k] = A[correctRow,k];
+			    }
+			}
+
+        }
+
+        private static string GenerateKey()
+        {
+            var sb = new StringBuilder(5);
+
+            for (int i = 0; i < 5; i++)
+            {
+                sb.Append(M[rng.Next() % M.Length]);
+            }
+
+           return sb.ToString();
+        }
+
+        public static string Encrypt(string plainText)
+        {
+            if (counter >= 10)
+            {
+                key = GenerateKey();
+                counter = 0;
+            }
+                
+            char[] result = new char[plainText.Length];
+
+            for (int i = 0; i < plainText.Length; i++)
+			{
+                if (!M.Contains(plainText[i])) 
+                    throw new ArgumentOutOfRangeException(plainText[i].ToString(), $"\nЯвният текст съдържа символа '{plainText[i]}', който не е част от множеството допустими символи.");
+
+
+                int colIndex = -1;
+                int rowIndex = -1;
+
+                for (int k = 0; k < APrime.GetLength(1); k++)
+			    {
+                    if(plainText[i] == APrime[0,k])
+                    {
+                        colIndex = k;
+                        break;
+                    }
+			    }
+
+                for (int k = 1; k < APrime.GetLength(0); k++)
+			    {
+                    if(APrime[k,0] == key[i % key.Length])
+                    {
+                        rowIndex = k;
+                        break;
+                    }
+			    }
+
+                result[i] = APrime[rowIndex,colIndex];
+			}
+        
+            counter++;
+            return new string(result);
+        }
+
+        public static string Decrypt(string cryptogram)
+        {
+            char[] result = new char[cryptogram.Length];
+
+            
+
+            for (int i = 0; i < cryptogram.Length; i++)
+			{
+                int rowIndex = -1;
+                int colIndex = -1;
+
+                for (int k = 1; k < APrime.GetLength(0); k++)
+			    {
+                    if(APrime[k,0] == key[i % key.Length])
+                    {
+                        rowIndex = k;
+                        break;
+                    }
+			    }
+
+                for (int k = 0; k < APrime.GetLength(1); k++)
+			    {
+                    if(APrime[rowIndex, k] == cryptogram[i])
+                    {
+                        colIndex = k;
+                        break;
+                    }
+			    }
+
+                result[i] = APrime[0,colIndex];
+			}
+
+            return new string(result);
+        }
     }
 
 }
