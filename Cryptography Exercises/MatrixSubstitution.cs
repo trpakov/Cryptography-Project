@@ -29,7 +29,7 @@ namespace Cryptography_Exercises
 
         public static char[,] APrime;
         private static Random rng = new Random();
-        private static int counter;
+
         public static string TestText {get; set;} = "ПРЕХВЪРЛЯТ СЕ В АРХИВ СЛЕДНИТЕ ДОКУМЕНТИ Б 36481 312 - АВТ, М 82134 656 - АКД, К 44251 348 - ВРН, Т 11426 273 - ММИ";
         public const string TestCrypto = "Щ825О288Г 692ДО6ЪГ5ФММДЯСО552С6 БЮ-Ц-А2Ф6ЬСЛИДШЦДЕБТСЕ8КЮЕЗ8ЦМЯКГГФСОЗЖМТДМФ ФДЦ6ФЩКЗБМШМК6НСФЮЧПС28БСЩКИ6ТЮЛ87М9 Ф";
 
@@ -95,12 +95,6 @@ namespace Cryptography_Exercises
 
         public static string Encrypt(string plainText)
         {
-            if (counter >= 10)
-            {
-                key = GenerateKey();
-                counter = 0;
-            }
-
             GenerateMatrices();
                 
             char[] result = new char[plainText.Length];
@@ -135,7 +129,6 @@ namespace Cryptography_Exercises
                 result[i] = APrime[rowIndex,colIndex];
 			}
         
-            counter++;
             return new string(result);
         }
 

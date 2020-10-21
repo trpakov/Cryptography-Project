@@ -23,7 +23,6 @@ namespace Cryptography_Exercises
         }
 
         private static Random rng = new Random();
-        private static int counter;
         public static string TestText { get; set; } = "*ФИРМА TRIPP LITE ДЕПОЗИРА СУМАТА 300 000 USD ПО СМЕТКА 306 18 216-4 В БАНКА \"ХЕБРОС\"*";
         public const string TestCrypto = "МFЦЩBПН66WY8Л2V8SЕЧФCЬЦЦЩУЛECЬОЬУЛЖ*БК9ЕБН77RЕEЯНAЬУЬЯПНВБЖЕЖЙНБВЖЗЙЛУЙРОЦЯПНКGУКFЯEКО";
 
@@ -53,12 +52,6 @@ namespace Cryptography_Exercises
             if (plainText[0] != '*' || plainText[plainText.Length - 1] != '*')
                 throw new ArgumentException("Съобщението трябва да започва и завършва със символа '*'.");
 
-            if (counter >= 10)
-            {
-                key = GenerateKey();
-                counter = 0;
-            }
-
             char[] result = new char[plainText.Length];
 
             for (int i = 0; i < plainText.Length; i++)
@@ -68,7 +61,6 @@ namespace Cryptography_Exercises
                 result[i] = M[(Array.IndexOf(M, plainText[i]) + Array.IndexOf(M, key[i % key.Length]) + 1) % M.Length];
             }
 
-            counter++;
             return new string(result);
         }
 
