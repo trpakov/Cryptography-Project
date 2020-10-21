@@ -30,6 +30,7 @@ namespace Cryptography_Exercises
                 textBoxInput.Text = CaesarCipher.TestText;
             else
                 textBoxInput.Text = CaesarCipher.TestCrypto;
+            groupBoxKey.Enabled = false;
         }
 
         private void radioButtonDirectSubs_CheckedChanged(object sender, EventArgs e)
@@ -39,6 +40,7 @@ namespace Cryptography_Exercises
                 textBoxInput.Text = DirectSubstitution.TestText;
             else
                 textBoxInput.Text = DirectSubstitution.TestCrypto;
+            groupBoxKey.Enabled = false;
         }
 
         private void radioButtonPolySub_CheckedChanged(object sender, EventArgs e)
@@ -48,6 +50,8 @@ namespace Cryptography_Exercises
                 textBoxInput.Text = PolyalphabeticSubstitution.TestText;
             else
                 textBoxInput.Text = PolyalphabeticSubstitution.TestCrypto;
+            groupBoxKey.Enabled = true;
+            textBoxKey.Text = PolyalphabeticSubstitution.Key;
         }
 
         private void radioButtonMatrixSub_CheckedChanged(object sender, EventArgs e)
@@ -57,6 +61,9 @@ namespace Cryptography_Exercises
                 textBoxInput.Text = MatrixSubstitution.TestText;
             else
                 textBoxInput.Text = MatrixSubstitution.TestCrypto;
+            groupBoxKey.Enabled = true;
+            textBoxKey.Text = MatrixSubstitution.Key;
+
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -216,5 +223,46 @@ namespace Cryptography_Exercises
         {
             Application.Exit();
         }
+
+        private void textBoxKey_Leave(object sender, EventArgs e)
+        {
+            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+
+            switch (chosenMethod.Name)
+            {
+                case "radioButtonPolySub":
+                    if (textBoxKey.Text != PolyalphabeticSubstitution.Key)
+                        PolyalphabeticSubstitution.Key = textBoxKey.Text;
+
+                    break;
+                case "radioButtonMatrixSub":
+                    if (textBoxKey.Text != MatrixSubstitution.Key)
+                        MatrixSubstitution.Key = textBoxKey.Text;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnRandomKey_Click(object sender, EventArgs e)
+        {
+            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+
+            switch (chosenMethod.Name)
+            {
+                case "radioButtonPolySub":
+                    textBoxKey.Text = PolyalphabeticSubstitution.GenerateKey();
+                    PolyalphabeticSubstitution.Key = textBoxKey.Text;
+                    break;
+                case "radioButtonMatrixSub":
+                    textBoxKey.Text = MatrixSubstitution.GenerateKey();
+                    MatrixSubstitution.Key = textBoxKey.Text;
+                    break;
+                default:
+                    break;
+            }
+        }
+    
     }
 }

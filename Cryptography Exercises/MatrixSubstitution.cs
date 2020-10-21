@@ -38,45 +38,50 @@ namespace Cryptography_Exercises
             key = GenerateKey(); // random key
             key = "АРХИВ"; // explicit test key
 
+            GenerateMatrices();
+
+        }
+
+        public static void GenerateMatrices()
+        {
             A = new char[M.Length, M.Length];
 
             for (int i = 0; i < A.GetLength(0); i++)
-			{
+            {
                 for (int k = 0; k < A.GetLength(1); k++)
-			    {
-                    A[i,k] = M[(k + i) % M.Length];
-			    }
-			}
+                {
+                    A[i, k] = M[(k + i) % M.Length];
+                }
+            }
 
-            APrime = new char[key.Length+1, M.Length];
+            APrime = new char[key.Length + 1, M.Length];
 
             for (int k = 0; k < M.Length; k++)
-			{
-                APrime[0,k] = M[k];
-			}
+            {
+                APrime[0, k] = M[k];
+            }
 
             for (int i = 1; i < APrime.GetLength(0); i++)
-			{
+            {
                 int correctRow = 0;
 
                 for (int q = 1; q < A.GetLength(0); q++)
-			    {
-                    if(A[q,0] == key[(i-1) % key.Length])
+                {
+                    if (A[q, 0] == key[(i - 1) % key.Length])
                     {
                         correctRow = q;
                         break;
                     }
-			    }
+                }
 
                 for (int k = 0; k < APrime.GetLength(1); k++)
-			    {
-                    APrime[i,k] = A[correctRow,k];
-			    }
-			}
-
+                {
+                    APrime[i, k] = A[correctRow, k];
+                }
+            }
         }
 
-        private static string GenerateKey()
+        public static string GenerateKey()
         {
             var sb = new StringBuilder(5);
 
@@ -95,6 +100,8 @@ namespace Cryptography_Exercises
                 key = GenerateKey();
                 counter = 0;
             }
+
+            GenerateMatrices();
                 
             char[] result = new char[plainText.Length];
 

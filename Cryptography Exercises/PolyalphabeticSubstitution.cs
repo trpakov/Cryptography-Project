@@ -33,7 +33,7 @@ namespace Cryptography_Exercises
             key = "МОНИТОР"; // explicit test key
         }
 
-        private static string GenerateKey()
+        public static string GenerateKey()
         {
             int keyLength = rng.Next(0, M.Length);
             var sb = new StringBuilder(keyLength);

@@ -51,6 +51,11 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExit = new System.Windows.Forms.Button();
             this.textBoxResult = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxKey = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.btnRandomKey = new System.Windows.Forms.Button();
             this.groupBoxMethods.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -62,6 +67,9 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBoxResult.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.groupBoxKey.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxMethods
@@ -147,7 +155,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.groupBoxMethods);
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxOperation);
+            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel6);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxSet);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxInput);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxResult);
@@ -161,18 +169,16 @@
             // 
             this.groupBoxOperation.Controls.Add(this.tableLayoutPanel2);
             this.groupBoxOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxOperation.Location = new System.Drawing.Point(3, 90);
+            this.groupBoxOperation.Location = new System.Drawing.Point(3, 3);
             this.groupBoxOperation.Name = "groupBoxOperation";
-            this.groupBoxOperation.Size = new System.Drawing.Size(785, 81);
+            this.groupBoxOperation.Size = new System.Drawing.Size(392, 67);
             this.groupBoxOperation.TabIndex = 1;
             this.groupBoxOperation.TabStop = false;
             this.groupBoxOperation.Text = "Тип операция";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.Controls.Add(this.radioButtonDecrypt, 1, 0);
@@ -182,16 +188,16 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(779, 55);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(386, 41);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radioButtonDecrypt
             // 
             this.radioButtonDecrypt.AutoSize = true;
             this.radioButtonDecrypt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonDecrypt.Location = new System.Drawing.Point(197, 3);
+            this.radioButtonDecrypt.Location = new System.Drawing.Point(196, 3);
             this.radioButtonDecrypt.Name = "radioButtonDecrypt";
-            this.radioButtonDecrypt.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonDecrypt.Size = new System.Drawing.Size(187, 35);
             this.radioButtonDecrypt.TabIndex = 1;
             this.radioButtonDecrypt.Text = "Декриптиране";
             this.radioButtonDecrypt.UseVisualStyleBackColor = true;
@@ -204,7 +210,7 @@
             this.radioButtonEncrypt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonEncrypt.Location = new System.Drawing.Point(3, 3);
             this.radioButtonEncrypt.Name = "radioButtonEncrypt";
-            this.radioButtonEncrypt.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonEncrypt.Size = new System.Drawing.Size(187, 35);
             this.radioButtonEncrypt.TabIndex = 0;
             this.radioButtonEncrypt.TabStop = true;
             this.radioButtonEncrypt.Text = "Криптиране";
@@ -215,7 +221,7 @@
             // 
             this.groupBoxSet.Controls.Add(this.tableLayoutPanel3);
             this.groupBoxSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxSet.Location = new System.Drawing.Point(3, 177);
+            this.groupBoxSet.Location = new System.Drawing.Point(3, 169);
             this.groupBoxSet.Name = "groupBoxSet";
             this.groupBoxSet.Size = new System.Drawing.Size(785, 81);
             this.groupBoxSet.TabIndex = 2;
@@ -264,7 +270,7 @@
             // 
             this.groupBoxInput.Controls.Add(this.tableLayoutPanel4);
             this.groupBoxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxInput.Location = new System.Drawing.Point(3, 264);
+            this.groupBoxInput.Location = new System.Drawing.Point(3, 256);
             this.groupBoxInput.Name = "groupBoxInput";
             this.groupBoxInput.Size = new System.Drawing.Size(785, 81);
             this.groupBoxInput.TabIndex = 3;
@@ -312,7 +318,7 @@
             // 
             this.groupBoxResult.Controls.Add(this.tableLayoutPanel5);
             this.groupBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxResult.Location = new System.Drawing.Point(3, 351);
+            this.groupBoxResult.Location = new System.Drawing.Point(3, 343);
             this.groupBoxResult.Name = "groupBoxResult";
             this.groupBoxResult.Size = new System.Drawing.Size(785, 81);
             this.groupBoxResult.TabIndex = 4;
@@ -357,6 +363,69 @@
             this.textBoxResult.Size = new System.Drawing.Size(519, 27);
             this.textBoxResult.TabIndex = 1;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.groupBoxKey, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.groupBoxOperation, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 90);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(797, 73);
+            this.tableLayoutPanel6.TabIndex = 5;
+            // 
+            // groupBoxKey
+            // 
+            this.groupBoxKey.Controls.Add(this.tableLayoutPanel7);
+            this.groupBoxKey.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxKey.Enabled = false;
+            this.groupBoxKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxKey.Location = new System.Drawing.Point(401, 3);
+            this.groupBoxKey.Name = "groupBoxKey";
+            this.groupBoxKey.Size = new System.Drawing.Size(393, 67);
+            this.groupBoxKey.TabIndex = 2;
+            this.groupBoxKey.TabStop = false;
+            this.groupBoxKey.Text = "Ключ";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel7.Controls.Add(this.btnRandomKey, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.textBoxKey, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 23);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(387, 41);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // textBoxKey
+            // 
+            this.textBoxKey.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxKey.Location = new System.Drawing.Point(3, 7);
+            this.textBoxKey.Name = "textBoxKey";
+            this.textBoxKey.Size = new System.Drawing.Size(187, 27);
+            this.textBoxKey.TabIndex = 2;
+            this.textBoxKey.Leave += new System.EventHandler(this.textBoxKey_Leave);
+            // 
+            // btnRandomKey
+            // 
+            this.btnRandomKey.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRandomKey.Location = new System.Drawing.Point(215, 8);
+            this.btnRandomKey.Name = "btnRandomKey";
+            this.btnRandomKey.Size = new System.Drawing.Size(150, 25);
+            this.btnRandomKey.TabIndex = 3;
+            this.btnRandomKey.Text = "Случаен ключ";
+            this.btnRandomKey.UseVisualStyleBackColor = true;
+            this.btnRandomKey.Click += new System.EventHandler(this.btnRandomKey_Click);
+            // 
             // CryptoTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -384,6 +453,10 @@
             this.groupBoxResult.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.groupBoxKey.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -413,5 +486,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox textBoxResult;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.GroupBox groupBoxKey;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.TextBox textBoxKey;
+        private System.Windows.Forms.Button btnRandomKey;
     }
 }
