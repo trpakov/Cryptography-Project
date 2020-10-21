@@ -73,16 +73,16 @@ namespace Cryptography_Exercises
             switch (chosenMethod.Name)
             {
                 case "radioButtonCaesar":
-                    textBoxM.Text = new string(CaesarCipher.M);
+                    textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:/";
                     break;
                 case "radioButtonDirectSubs":
-                    textBoxM.Text = new string(MatrixSubstitution.M);
+                    textBoxM.Text = "АБВГДЕИКЛМНОПРСТУФХЯ0123456789NYUD №-Ъ\"S";
                     break;
                 case "radioButtonPolySub":
-                    textBoxM.Text = new string(PolyalphabeticSubstitution.M);
+                    textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \"-*";
                     break;
                 case "radioButtonMatrixSub":
-                    textBoxM.Text = new string(MatrixSubstitution.M);
+                    textBoxM.Text = "0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ -:,";
                     break;
                 default:
                     break;
@@ -149,73 +149,99 @@ namespace Cryptography_Exercises
             if(textBoxM.Text == string.Empty)
             {
                 MessageBox.Show("Моля въведете валидно множество от допустими стойности преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-        }
-
-        private void btnAction_Click(object sender, EventArgs e)
-        {
-            if(textBoxInput.Text == string.Empty)
-            {
-                MessageBox.Show("Моля въведете валидно множество от допустими стойности преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxM.Focus();
                 return;
             }
 
             var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
-            if (radioButtonEncrypt.Checked)
+            switch (chosenMethod.Name)
             {
-                switch (chosenMethod.Name)
-                {
-                    case "radioButtonCaesar":
-                        if (textBoxM.Text.ToCharArray() != CaesarCipher.M)
-                            CaesarCipher.M = textBoxM.Text.ToCharArray();
-                        textBoxResult.Text = CaesarCipher.Encrypt(textBoxInput.Text);
-                        break;
-                    case "radioButtonDirectSubs":
-                        textBoxResult.Text = DirectSubstitution.Encrypt(textBoxInput.Text).Item2;
-
-                        break;
-                    case "radioButtonPolySub":
-                        textBoxResult.Text = PolyalphabeticSubstitution.Encrypt(textBoxInput.Text);
-
-                        break;
-                    case "radioButtonMatrixSub":
-                        textBoxResult.Text = MatrixSubstitution.Encrypt(textBoxInput.Text);
-
-                        break;
-                    default:
-                        break;
-                }
+                case "radioButtonCaesar":
+                    CaesarCipher.M = textBoxM.Text.ToCharArray();
+                    break;
+                case "radioButtonDirectSubs":
+                    DirectSubstitution.M = textBoxM.Text.ToCharArray();
+                    break;
+                case "radioButtonPolySub":
+                    PolyalphabeticSubstitution.M = textBoxM.Text.ToCharArray();
+                    break;
+                case "radioButtonMatrixSub":
+                    MatrixSubstitution.M = textBoxM.Text.ToCharArray();
+                    break;
+                default:
+                    break;
             }
-            else
+        }
+
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            try
             {
-                switch (chosenMethod.Name)
+                if (textBoxInput.Text == string.Empty)
                 {
-                    case "radioButtonCaesar":
-                        if (textBoxM.Text.ToCharArray() != CaesarCipher.M)
-                            CaesarCipher.M = textBoxM.Text.ToCharArray();
-                        textBoxResult.Text = CaesarCipher.Decrypt(textBoxInput.Text);
-                        break;
-                    case "radioButtonDirectSubs":
-                        textBoxResult.Text = DirectSubstitution.Decrypt(textBoxInput.Text);
-
-                        break;
-                    case "radioButtonPolySub":
-                        textBoxResult.Text = PolyalphabeticSubstitution.Decrypt(textBoxInput.Text);
-
-                        break;
-                    case "radioButtonMatrixSub":
-                        textBoxResult.Text = MatrixSubstitution.Decrypt(textBoxInput.Text);
-
-                        break;
-                    default:
-                        break;
+                    MessageBox.Show("Моля въведете валидно множество от допустими стойности преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-            }
+                var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
+                if (radioButtonEncrypt.Checked)
+                {
+                    switch (chosenMethod.Name)
+                    {
+                        case "radioButtonCaesar":
+                            if (textBoxM.Text.ToCharArray() != CaesarCipher.M)
+                                CaesarCipher.M = textBoxM.Text.ToCharArray();
+                            textBoxResult.Text = CaesarCipher.Encrypt(textBoxInput.Text);
+                            break;
+                        case "radioButtonDirectSubs":
+                            textBoxResult.Text = DirectSubstitution.Encrypt(textBoxInput.Text).Item2;
+
+                            break;
+                        case "radioButtonPolySub":
+                            textBoxResult.Text = PolyalphabeticSubstitution.Encrypt(textBoxInput.Text);
+
+                            break;
+                        case "radioButtonMatrixSub":
+                            textBoxResult.Text = MatrixSubstitution.Encrypt(textBoxInput.Text);
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (chosenMethod.Name)
+                    {
+                        case "radioButtonCaesar":
+                            if (textBoxM.Text.ToCharArray() != CaesarCipher.M)
+                                CaesarCipher.M = textBoxM.Text.ToCharArray();
+                            textBoxResult.Text = CaesarCipher.Decrypt(textBoxInput.Text);
+                            break;
+                        case "radioButtonDirectSubs":
+                            textBoxResult.Text = DirectSubstitution.Decrypt(textBoxInput.Text);
+
+                            break;
+                        case "radioButtonPolySub":
+                            textBoxResult.Text = PolyalphabeticSubstitution.Decrypt(textBoxInput.Text);
+
+                            break;
+                        case "radioButtonMatrixSub":
+                            textBoxResult.Text = MatrixSubstitution.Decrypt(textBoxInput.Text);
+
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -228,40 +254,57 @@ namespace Cryptography_Exercises
         {
             var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
-            switch (chosenMethod.Name)
+            try
             {
-                case "radioButtonPolySub":
-                    if (textBoxKey.Text != PolyalphabeticSubstitution.Key)
-                        PolyalphabeticSubstitution.Key = textBoxKey.Text;
+                switch (chosenMethod.Name)
+                {
+                    case "radioButtonPolySub":
+                        if (textBoxKey.Text != PolyalphabeticSubstitution.Key)
+                            PolyalphabeticSubstitution.Key = textBoxKey.Text;
 
-                    break;
-                case "radioButtonMatrixSub":
-                    if (textBoxKey.Text != MatrixSubstitution.Key)
-                        MatrixSubstitution.Key = textBoxKey.Text;
+                        break;
+                    case "radioButtonMatrixSub":
+                        if (textBoxKey.Text != MatrixSubstitution.Key)
+                            MatrixSubstitution.Key = textBoxKey.Text;
 
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnRandomKey_Click(object sender, EventArgs e)
         {
             var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
-            switch (chosenMethod.Name)
+            try
             {
-                case "radioButtonPolySub":
-                    textBoxKey.Text = PolyalphabeticSubstitution.GenerateKey();
-                    PolyalphabeticSubstitution.Key = textBoxKey.Text;
-                    break;
-                case "radioButtonMatrixSub":
-                    textBoxKey.Text = MatrixSubstitution.GenerateKey();
-                    MatrixSubstitution.Key = textBoxKey.Text;
-                    break;
-                default:
-                    break;
+
+                switch (chosenMethod.Name)
+                {
+                    case "radioButtonPolySub":
+                        textBoxKey.Text = PolyalphabeticSubstitution.GenerateKey();
+                        PolyalphabeticSubstitution.Key = textBoxKey.Text;
+                        break;
+                    case "radioButtonMatrixSub":
+                        textBoxKey.Text = MatrixSubstitution.GenerateKey();
+                        MatrixSubstitution.Key = textBoxKey.Text;
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     
     }

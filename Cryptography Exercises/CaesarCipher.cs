@@ -33,6 +33,8 @@ namespace Cryptography_Exercises
 
             for (int i = 0; i < cryptogramAsChars.Length; i++)
             {
+                if (!M.Contains(cryptogramAsChars[i])) throw new ArgumentOutOfRangeException(cryptogramAsChars[i].ToString(), $"\nКриптограмата съдържа символа '{cryptogramAsChars[i]}', който не е част от множеството допустими символи.");
+
                 int newIndex = (Array.IndexOf(M, cryptogramAsChars[i]) - 3) % M.Length;
                 if (newIndex < 0) newIndex = M.Length - Math.Abs(newIndex);
 
