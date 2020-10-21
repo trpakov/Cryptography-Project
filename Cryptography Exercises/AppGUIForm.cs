@@ -74,15 +74,19 @@ namespace Cryptography_Exercises
             {
                 case "radioButtonCaesar":
                     textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:/";
+                    CaesarCipher.M = textBoxM.Text.ToCharArray();
                     break;
                 case "radioButtonDirectSubs":
                     textBoxM.Text = "АБВГДЕИКЛМНОПРСТУФХЯ0123456789NYUD №-Ъ\"S";
+                    DirectSubstitution.M = textBoxM.Text.ToCharArray();
                     break;
                 case "radioButtonPolySub":
                     textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \"-*";
+                    PolyalphabeticSubstitution.M = textBoxM.Text.ToCharArray();
                     break;
                 case "radioButtonMatrixSub":
                     textBoxM.Text = "0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ -:,";
+                    MatrixSubstitution.M = textBoxM.Text.ToCharArray();
                     break;
                 default:
                     break;
