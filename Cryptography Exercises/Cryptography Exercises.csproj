@@ -54,6 +54,10 @@
     <Compile Include="AppGUIForm.Designer.cs">
       <DependentUpon>AppGUIForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CaesarCipher.cs" />
+    <Compile Include="DirectSubstitution.cs" />
+    <Compile Include="MatrixSubstitution.cs" />
+    <Compile Include="PolyalphabeticSubstitution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
