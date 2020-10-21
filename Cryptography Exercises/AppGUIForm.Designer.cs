@@ -1,6 +1,6 @@
 ﻿namespace Cryptography_Exercises
 {
-    partial class AppGUIForm
+    partial class CryptoTest
     {
         /// <summary>
         /// Required designer variable.
@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.groupBoxMethods = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButtonMatrixSub = new System.Windows.Forms.RadioButton();
+            this.radioButtonPolySub = new System.Windows.Forms.RadioButton();
+            this.radioButtonDirectSubs = new System.Windows.Forms.RadioButton();
+            this.radioButtonCaesar = new System.Windows.Forms.RadioButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxOperation = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButtonDecrypt = new System.Windows.Forms.RadioButton();
+            this.radioButtonEncrypt = new System.Windows.Forms.RadioButton();
             this.groupBoxSet = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.textBoxM = new System.Windows.Forms.TextBox();
             this.groupBoxInput = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAction = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxInput = new System.Windows.Forms.TextBox();
             this.groupBoxResult = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.textBoxResult = new System.Windows.Forms.TextBox();
             this.groupBoxMethods.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.groupBoxOperation.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBoxSet.SuspendLayout();
@@ -75,6 +75,75 @@
             this.groupBoxMethods.TabStop = false;
             this.groupBoxMethods.Text = "Метод за шифроване";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.radioButtonMatrixSub, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radioButtonPolySub, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radioButtonDirectSubs, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radioButtonCaesar, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 23);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(779, 55);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // radioButtonMatrixSub
+            // 
+            this.radioButtonMatrixSub.AutoSize = true;
+            this.radioButtonMatrixSub.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonMatrixSub.Location = new System.Drawing.Point(585, 3);
+            this.radioButtonMatrixSub.Name = "radioButtonMatrixSub";
+            this.radioButtonMatrixSub.Size = new System.Drawing.Size(191, 49);
+            this.radioButtonMatrixSub.TabIndex = 3;
+            this.radioButtonMatrixSub.Text = "Матрично заместване";
+            this.radioButtonMatrixSub.UseVisualStyleBackColor = true;
+            this.radioButtonMatrixSub.CheckedChanged += new System.EventHandler(this.radioButtonMatrixSub_CheckedChanged);
+            // 
+            // radioButtonPolySub
+            // 
+            this.radioButtonPolySub.AutoSize = true;
+            this.radioButtonPolySub.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonPolySub.Location = new System.Drawing.Point(391, 3);
+            this.radioButtonPolySub.Name = "radioButtonPolySub";
+            this.radioButtonPolySub.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonPolySub.TabIndex = 2;
+            this.radioButtonPolySub.Text = "Многоазбучно заместване";
+            this.radioButtonPolySub.UseVisualStyleBackColor = true;
+            this.radioButtonPolySub.CheckedChanged += new System.EventHandler(this.radioButtonPolySub_CheckedChanged);
+            // 
+            // radioButtonDirectSubs
+            // 
+            this.radioButtonDirectSubs.AutoSize = true;
+            this.radioButtonDirectSubs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonDirectSubs.Location = new System.Drawing.Point(197, 3);
+            this.radioButtonDirectSubs.Name = "radioButtonDirectSubs";
+            this.radioButtonDirectSubs.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonDirectSubs.TabIndex = 1;
+            this.radioButtonDirectSubs.Text = "Директно заместване";
+            this.radioButtonDirectSubs.UseVisualStyleBackColor = true;
+            this.radioButtonDirectSubs.CheckedChanged += new System.EventHandler(this.radioButtonDirectSubs_CheckedChanged);
+            // 
+            // radioButtonCaesar
+            // 
+            this.radioButtonCaesar.AutoSize = true;
+            this.radioButtonCaesar.Checked = true;
+            this.radioButtonCaesar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonCaesar.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonCaesar.Name = "radioButtonCaesar";
+            this.radioButtonCaesar.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonCaesar.TabIndex = 0;
+            this.radioButtonCaesar.TabStop = true;
+            this.radioButtonCaesar.Text = "Шифър\r\nна Цезар";
+            this.radioButtonCaesar.UseVisualStyleBackColor = true;
+            this.radioButtonCaesar.CheckedChanged += new System.EventHandler(this.radioButtonCaesar_CheckedChanged);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.groupBoxMethods);
@@ -87,71 +156,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.radioButton4, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 23);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(779, 55);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton1.Location = new System.Drawing.Point(3, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(188, 49);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Шифър\r\nна Цезар";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton2.Location = new System.Drawing.Point(197, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(188, 49);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Директно заместване";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton3.Location = new System.Drawing.Point(391, 3);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(188, 49);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.Text = "Многоазбучно заместване";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton4.Location = new System.Drawing.Point(585, 3);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(191, 49);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.Text = "Матрично заместване";
-            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // groupBoxOperation
             // 
@@ -171,8 +175,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.radioButton7, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.radioButton8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radioButtonDecrypt, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radioButtonEncrypt, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -181,29 +185,31 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(779, 55);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // radioButton7
+            // radioButtonDecrypt
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton7.Location = new System.Drawing.Point(197, 3);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(188, 49);
-            this.radioButton7.TabIndex = 1;
-            this.radioButton7.Text = "Декриптиране";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioButtonDecrypt.AutoSize = true;
+            this.radioButtonDecrypt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonDecrypt.Location = new System.Drawing.Point(197, 3);
+            this.radioButtonDecrypt.Name = "radioButtonDecrypt";
+            this.radioButtonDecrypt.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonDecrypt.TabIndex = 1;
+            this.radioButtonDecrypt.Text = "Декриптиране";
+            this.radioButtonDecrypt.UseVisualStyleBackColor = true;
+            this.radioButtonDecrypt.CheckedChanged += new System.EventHandler(this.radioButtonDecrypt_CheckedChanged);
             // 
-            // radioButton8
+            // radioButtonEncrypt
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Checked = true;
-            this.radioButton8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton8.Location = new System.Drawing.Point(3, 3);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(188, 49);
-            this.radioButton8.TabIndex = 0;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Криптиране";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButtonEncrypt.AutoSize = true;
+            this.radioButtonEncrypt.Checked = true;
+            this.radioButtonEncrypt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonEncrypt.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonEncrypt.Name = "radioButtonEncrypt";
+            this.radioButtonEncrypt.Size = new System.Drawing.Size(188, 49);
+            this.radioButtonEncrypt.TabIndex = 0;
+            this.radioButtonEncrypt.TabStop = true;
+            this.radioButtonEncrypt.Text = "Криптиране";
+            this.radioButtonEncrypt.UseVisualStyleBackColor = true;
+            this.radioButtonEncrypt.CheckedChanged += new System.EventHandler(this.radioButtonEncrypt_CheckedChanged);
             // 
             // groupBoxSet
             // 
@@ -223,8 +229,8 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.button1, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnReset, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.textBoxM, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -233,24 +239,26 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(779, 55);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // button1
+            // btnReset
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(614, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 42);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Ресет";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReset.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReset.Location = new System.Drawing.Point(605, 6);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(150, 42);
+            this.btnReset.TabIndex = 0;
+            this.btnReset.Text = "Ресет";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // textBox1
+            // textBoxM
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel3.SetColumnSpan(this.textBox1, 3);
-            this.textBox1.Location = new System.Drawing.Point(31, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(519, 27);
-            this.textBox1.TabIndex = 1;
+            this.textBoxM.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel3.SetColumnSpan(this.textBoxM, 3);
+            this.textBoxM.Location = new System.Drawing.Point(31, 14);
+            this.textBoxM.Name = "textBoxM";
+            this.textBoxM.Size = new System.Drawing.Size(519, 27);
+            this.textBoxM.TabIndex = 1;
+            this.textBoxM.Leave += new System.EventHandler(this.textBoxM_Leave);
             // 
             // groupBoxInput
             // 
@@ -271,7 +279,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.Controls.Add(this.btnAction, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.textBox2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.textBoxInput, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -283,21 +291,22 @@
             // btnAction
             // 
             this.btnAction.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAction.Location = new System.Drawing.Point(614, 6);
+            this.btnAction.Location = new System.Drawing.Point(605, 6);
             this.btnAction.Name = "btnAction";
-            this.btnAction.Size = new System.Drawing.Size(133, 42);
+            this.btnAction.Size = new System.Drawing.Size(150, 42);
             this.btnAction.TabIndex = 0;
-            this.btnAction.Text = "button2";
+            this.btnAction.Text = "КРИПТИРАЙ";
             this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
-            // textBox2
+            // textBoxInput
             // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel4.SetColumnSpan(this.textBox2, 3);
-            this.textBox2.Location = new System.Drawing.Point(31, 14);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(519, 27);
-            this.textBox2.TabIndex = 1;
+            this.textBoxInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel4.SetColumnSpan(this.textBoxInput, 3);
+            this.textBoxInput.Location = new System.Drawing.Point(31, 14);
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.Size = new System.Drawing.Size(519, 27);
+            this.textBoxInput.TabIndex = 1;
             // 
             // groupBoxResult
             // 
@@ -317,8 +326,8 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.Controls.Add(this.btnAbout, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBox3, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnExit, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxResult, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -327,38 +336,42 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(779, 55);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // btnAbout
+            // btnExit
             // 
-            this.btnAbout.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAbout.Location = new System.Drawing.Point(614, 6);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(133, 42);
-            this.btnAbout.TabIndex = 0;
-            this.btnAbout.Text = "Относно";
-            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.Location = new System.Drawing.Point(605, 6);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(150, 42);
+            this.btnExit.TabIndex = 0;
+            this.btnExit.Text = "Изход";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // textBox3
+            // textBoxResult
             // 
-            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel5.SetColumnSpan(this.textBox3, 3);
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(31, 14);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(519, 27);
-            this.textBox3.TabIndex = 1;
+            this.textBoxResult.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel5.SetColumnSpan(this.textBoxResult, 3);
+            this.textBoxResult.Location = new System.Drawing.Point(31, 14);
+            this.textBoxResult.Name = "textBoxResult";
+            this.textBoxResult.ReadOnly = true;
+            this.textBoxResult.Size = new System.Drawing.Size(519, 27);
+            this.textBoxResult.TabIndex = 1;
             // 
-            // AppGUIForm
+            // CryptoTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "AppGUIForm";
-            this.Text = "AppGUI";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.Name = "CryptoTest";
+            this.Text = "CryptoTest";
+            this.Load += new System.EventHandler(this.AppGUIForm_Load);
             this.groupBoxMethods.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBoxOperation.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -380,25 +393,25 @@
         private System.Windows.Forms.GroupBox groupBoxMethods;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonMatrixSub;
+        private System.Windows.Forms.RadioButton radioButtonPolySub;
+        private System.Windows.Forms.RadioButton radioButtonDirectSubs;
+        private System.Windows.Forms.RadioButton radioButtonCaesar;
         private System.Windows.Forms.GroupBox groupBoxOperation;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton radioButtonDecrypt;
+        private System.Windows.Forms.RadioButton radioButtonEncrypt;
         private System.Windows.Forms.GroupBox groupBoxSet;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.TextBox textBoxM;
         private System.Windows.Forms.GroupBox groupBoxInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnAction;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxInput;
         private System.Windows.Forms.GroupBox groupBoxResult;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.TextBox textBoxResult;
     }
 }
