@@ -13,7 +13,7 @@ namespace Cryptography_Exercises
             get => key;
             set
             {
-                foreach (var ch in key)
+                foreach (var ch in value)
                 {
                     if(!M.Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nВъведеният ключ съдържа символа '{ch.ToString()}', който не е част от множеството допустими символи.");
                 }
@@ -70,6 +70,8 @@ namespace Cryptography_Exercises
 
             for (int i = 0; i < cryptogram.Length; i++)
 			{
+                if (!M.Contains(cryptogram[i])) throw new ArgumentOutOfRangeException(cryptogram[i].ToString(), $"\nКриптограмата съдържа символа '{cryptogram[i]}', който не е част от множеството допустими символи.");
+
                 var difference =  Array.IndexOf(M, cryptogram[i]) - Array.IndexOf(M, key[i % key.Length]) - 1;
                 if(difference < 0)
                     difference = M.Length - Math.Abs(difference);

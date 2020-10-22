@@ -159,23 +159,34 @@ namespace Cryptography_Exercises
 
             var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
-            switch (chosenMethod.Name)
+            try
             {
-                case "radioButtonCaesar":
-                    CaesarCipher.M = textBoxM.Text.ToCharArray();
-                    break;
-                case "radioButtonDirectSubs":
-                    DirectSubstitution.M = textBoxM.Text.ToCharArray();
-                    break;
-                case "radioButtonPolySub":
-                    PolyalphabeticSubstitution.M = textBoxM.Text.ToCharArray();
-                    break;
-                case "radioButtonMatrixSub":
-                    MatrixSubstitution.M = textBoxM.Text.ToCharArray();
-                    break;
-                default:
-                    break;
+                switch (chosenMethod.Name)
+                {
+                    case "radioButtonCaesar":
+                        CaesarCipher.M = textBoxM.Text.ToCharArray();
+                        break;
+                    case "radioButtonDirectSubs":
+                        DirectSubstitution.M = textBoxM.Text.ToCharArray();
+                        break;
+                    case "radioButtonPolySub":
+                        PolyalphabeticSubstitution.M = textBoxM.Text.ToCharArray();
+                        PolyalphabeticSubstitution.Key = textBoxKey.Text;
+                        break;
+                    case "radioButtonMatrixSub":
+                        MatrixSubstitution.M = textBoxM.Text.ToCharArray();
+                        MatrixSubstitution.Key = textBoxKey.Text;
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxKey.Focus();
+            }
+
         }
 
         private void btnAction_Click(object sender, EventArgs e)
@@ -256,6 +267,13 @@ namespace Cryptography_Exercises
 
         private void textBoxKey_Leave(object sender, EventArgs e)
         {
+            if (textBoxKey.Text == string.Empty)
+            {
+                MessageBox.Show("Моля въведете валиден ключ преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxKey.Focus();
+                return;
+            }
+
             var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
             try
@@ -279,6 +297,7 @@ namespace Cryptography_Exercises
             catch (Exception er)
             {
                 MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxKey.Focus();
             }
 
         }
@@ -289,7 +308,6 @@ namespace Cryptography_Exercises
 
             try
             {
-
                 switch (chosenMethod.Name)
                 {
                     case "radioButtonPolySub":
@@ -309,6 +327,7 @@ namespace Cryptography_Exercises
                 MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            textBoxKey.Focus();
         }
     
     }
