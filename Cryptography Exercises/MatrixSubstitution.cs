@@ -15,10 +15,10 @@ namespace Cryptography_Exercises
             get => key;
             set
             {
-                if (key.Length != 5)
-                    throw new ArgumentOutOfRangeException(key, "Ключът трябва да е с дължина от 5 символа.");
+                if (value.Length != 5)
+                    throw new ArgumentOutOfRangeException(value, "Ключът трябва да е с дължина от 5 символа.");
 
-                foreach (var ch in key)
+                foreach (var ch in value)
                 {
                     if(!M.Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nВъведеният ключ съдържа символа '{ch.ToString()}', който не е част от множеството допустими символи.");
                 }

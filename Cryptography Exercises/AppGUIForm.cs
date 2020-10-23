@@ -12,6 +12,8 @@ namespace Cryptography_Exercises
 {
     public partial class CryptoTest : Form
     {
+        private string oldKeyValue;
+
         public CryptoTest()
         {
             InitializeComponent();
@@ -270,6 +272,7 @@ namespace Cryptography_Exercises
             if (textBoxKey.Text == string.Empty)
             {
                 MessageBox.Show("Моля въведете валиден ключ преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxKey.Text = oldKeyValue;
                 textBoxKey.Focus();
                 return;
             }
@@ -297,6 +300,7 @@ namespace Cryptography_Exercises
             catch (Exception er)
             {
                 MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxKey.Text = oldKeyValue;
                 textBoxKey.Focus();
             }
 
@@ -329,6 +333,10 @@ namespace Cryptography_Exercises
 
             textBoxKey.Focus();
         }
-    
+
+        private void textBoxKey_Enter(object sender, EventArgs e)
+        {
+            oldKeyValue = textBoxKey.Text;
+        }
     }
 }
