@@ -13,6 +13,7 @@ namespace Cryptography_Exercises
     public partial class CryptoTest : Form
     {
         private string oldKeyValue;
+        private string oldMValue;
 
         public CryptoTest()
         {
@@ -150,11 +151,12 @@ namespace Cryptography_Exercises
 
         }
 
-        private void textBoxM_Leave(object sender, EventArgs e)
+        private void textBoxM_Validated(object sender, EventArgs e)
         {
             if(textBoxM.Text == string.Empty)
             {
                 MessageBox.Show("Моля въведете валидно множество от допустими стойности преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxM.Text = oldMValue;
                 textBoxM.Focus();
                 return;
             }
@@ -186,7 +188,9 @@ namespace Cryptography_Exercises
             catch (Exception er)
             {
                 MessageBox.Show(er.Message, "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnRandomKey_Click(btnRandomKey, new EventArgs());
                 textBoxKey.Focus();
+
             }
 
         }
@@ -197,7 +201,8 @@ namespace Cryptography_Exercises
             {
                 if (textBoxInput.Text == string.Empty)
                 {
-                    MessageBox.Show("Моля въведете валидно множество от допустими стойности преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Моля въведете входен текст преди да започнете процеса на криптиране/декриптиране.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBoxInput.Focus();
                     return;
                 }
 
@@ -284,13 +289,13 @@ namespace Cryptography_Exercises
                 switch (chosenMethod.Name)
                 {
                     case "radioButtonPolySub":
-                        if (textBoxKey.Text != PolyalphabeticSubstitution.Key)
-                            PolyalphabeticSubstitution.Key = textBoxKey.Text;
+                        //if (textBoxKey.Text != PolyalphabeticSubstitution.Key)
+                        PolyalphabeticSubstitution.Key = textBoxKey.Text;
 
                         break;
                     case "radioButtonMatrixSub":
-                        if (textBoxKey.Text != MatrixSubstitution.Key)
-                            MatrixSubstitution.Key = textBoxKey.Text;
+                        //if (textBoxKey.Text != MatrixSubstitution.Key)
+                        MatrixSubstitution.Key = textBoxKey.Text;
 
                         break;
                     default:
@@ -337,6 +342,16 @@ namespace Cryptography_Exercises
         private void textBoxKey_Enter(object sender, EventArgs e)
         {
             oldKeyValue = textBoxKey.Text;
+        }
+
+        private void textBoxM_Enter(object sender, EventArgs e)
+        {
+            oldMValue = textBoxM.Text;
+        }
+
+        private void CryptoTest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

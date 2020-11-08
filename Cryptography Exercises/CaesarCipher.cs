@@ -10,7 +10,7 @@ namespace Cryptography_Exercises
         public const string TestCrypto = "ЧЛУПГ:NDUFKHU:ХЯУФЛ:ЗГ:РГИПИ:ФНОГЗ:РГЗ:533:НЕ/П/";
         public static string Encrypt(string plainText = TestText)
         {
-            if (plainText.Length > 80) throw new ArgumentOutOfRangeException(plainText, "Допуска се явен текст с дължина не по-голяма от 80 символа.");
+            if (plainText.Length > 80) throw new ArgumentException("Допуска се явен текст с дължина не по-голяма от 80 символа.");
 
             var plaintTextAsChars = plainText.ToCharArray();
             var result = new char[plainText.Length];

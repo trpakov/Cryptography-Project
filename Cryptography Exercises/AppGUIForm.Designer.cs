@@ -170,7 +170,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(600, 552);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(600, 366);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel6
@@ -352,7 +352,8 @@
             this.textBoxM.Name = "textBoxM";
             this.textBoxM.Size = new System.Drawing.Size(412, 23);
             this.textBoxM.TabIndex = 1;
-            this.textBoxM.Leave += new System.EventHandler(this.textBoxM_Leave);
+            this.textBoxM.Enter += new System.EventHandler(this.textBoxM_Enter);
+            this.textBoxM.Validated += new System.EventHandler(this.textBoxM_Validated);
             // 
             // groupBoxInput
             // 
@@ -472,6 +473,7 @@
             this.MaximizeBox = false;
             this.Name = "CryptoTest";
             this.Text = "CryptoTest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CryptoTest_FormClosing);
             this.Load += new System.EventHandler(this.AppGUIForm_Load);
             this.groupBoxMethods.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

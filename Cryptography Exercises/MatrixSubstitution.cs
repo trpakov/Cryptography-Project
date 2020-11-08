@@ -134,12 +134,15 @@ namespace Cryptography_Exercises
 
         public static string Decrypt(string cryptogram)
         {
-            char[] result = new char[cryptogram.Length];
+            GenerateMatrices();
 
-            
+            char[] result = new char[cryptogram.Length];
 
             for (int i = 0; i < cryptogram.Length; i++)
 			{
+                if (!M.Contains(cryptogram[i]))
+                    throw new ArgumentOutOfRangeException(cryptogram[i].ToString(), $"\nЯвният текст съдържа символа '{cryptogram[i]}', който не е част от множеството допустими символи.");
+
                 int rowIndex = -1;
                 int colIndex = -1;
 
