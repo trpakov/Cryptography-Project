@@ -10,14 +10,17 @@ namespace Cryptography_Exercises
     {
         public static char[] M { get; set; } = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ 0123456789".ToCharArray();
         private static char[] key;
-        public static char[] Key {
+        public static char[] Key
+        {
             get => key;
             set
             {
+                List<int> digits = new List<int>(value.Length);
+                for (int i = 1; i < value.Length + 1; i++)
+                    digits.Add(i);
+
                 foreach (var ch in value)
-                {
-                    if (!"123456789".Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nВъведеният ключ съдържа символа '{ch.ToString()}', който не е част от множеството допустими символи.");
-                }
+                    if (!digits.Contains(int.Parse(ch.ToString()))) throw new ArgumentException($"\nВъведеният ключ трябва да съдържа числата от 1 до своя размер.");
 
                 key = value;
             }
@@ -90,11 +93,11 @@ namespace Cryptography_Exercises
 
         public static string Decrypt(string crypto)
         {
-            //if (crypto.Length % Key.Length != 0)
-            //    throw new ArgumentException("Веведена е невалидна криптограма.");
+            if (crypto.Length % Key.Length != 0)
+                throw new ArgumentException("Веведена е невалидна криптограма (размерът й не е кратен на размера на ключа).");
 
             foreach (var ch in crypto)
-                if (!M.Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nЯвният текст съдържа символа '{ch}', който не е част от множеството допустими символи.");
+                if (!M.Contains(ch)) throw new ArgumentOutOfRangeException(ch.ToString(), $"\nКриптограмата съдържа символа '{ch}', който не е част от множеството допустими символи.");
 
             var reminder = crypto.Length % Key.Length;
             if (reminder != 0)

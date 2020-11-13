@@ -303,6 +303,7 @@
             this.radioButtonFormat.TabIndex = 1;
             this.radioButtonFormat.Text = "Разместване чрез форматиране на текста";
             this.radioButtonFormat.UseVisualStyleBackColor = true;
+            this.radioButtonFormat.CheckedChanged += new System.EventHandler(this.radioButtonFormat_CheckedChanged);
             // 
             // radioButtonBlock
             // 

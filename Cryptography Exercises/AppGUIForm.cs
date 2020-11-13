@@ -205,7 +205,8 @@ namespace Cryptography_Exercises
                         TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
                         break;
                     case "radioButtonFormat":
-                        throw new NotImplementedException();
+                        ColumnTransposition.M = textBoxM.Text.ToCharArray();
+                        ColumnTransposition.Key = textBoxKey.Text.ToCharArray();
                         break;
                     default:
                         break;
@@ -264,7 +265,7 @@ namespace Cryptography_Exercises
                             textBoxResult.Text = TextBlockCipher.Encrypt(textBoxInput.Text);
                             break;
                         case "radioButtonFormat":
-                            throw new NotImplementedException();
+                            textBoxResult.Text = ColumnTransposition.Encrypt(textBoxInput.Text);
                             break;
                         default:
                             break;
@@ -295,7 +296,7 @@ namespace Cryptography_Exercises
                             textBoxResult.Text = TextBlockCipher.Decrypt(textBoxInput.Text);
                             break;
                         case "radioButtonFormat":
-                            throw new NotImplementedException();
+                            textBoxResult.Text = ColumnTransposition.Decrypt(textBoxInput.Text);
                             break;
                         default:
                             break;
@@ -350,7 +351,7 @@ namespace Cryptography_Exercises
                         TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
                         break;
                     case "radioButtonFormat":
-                        throw new NotImplementedException();
+                        ColumnTransposition.Key = textBoxKey.Text.ToCharArray();
                         break;
                     default:
                         break;
@@ -391,7 +392,8 @@ namespace Cryptography_Exercises
                         TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
                         break;
                     case "radioButtonFormat":
-                        throw new NotImplementedException();
+                        textBoxKey.Text = new string(ColumnTransposition.GenerateKey());
+                        ColumnTransposition.Key = textBoxKey.Text.ToCharArray();
                         break;
                     default:
                         break;
@@ -456,6 +458,18 @@ namespace Cryptography_Exercises
 
             groupBoxKey.Enabled = true;
             textBoxKey.Text = new string(TextBlockCipher.Key);
+        }
+
+        private void radioButtonFormat_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxM.Text = new string(ColumnTransposition.M);
+            if (radioButtonEncrypt.Checked)
+                textBoxInput.Text = ColumnTransposition.TestText;
+            else
+                textBoxInput.Text = ColumnTransposition.TestCrypto;
+
+            groupBoxKey.Enabled = true;
+            textBoxKey.Text = new string(ColumnTransposition.Key);
         }
     }
 }
