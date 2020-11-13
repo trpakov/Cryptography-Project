@@ -24,6 +24,9 @@ namespace Cryptography_Exercises
         {
             textBoxM.Text = new string(CaesarCipher.M);
             textBoxInput.Text = CaesarCipher.TestText;
+
+            textBoxM.Text = new string(TextBlockCipher.M);
+            textBoxInput.Text = TextBlockCipher.TestText;
         }
 
         private void radioButtonCaesar_CheckedChanged(object sender, EventArgs e)
@@ -71,7 +74,12 @@ namespace Cryptography_Exercises
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            RadioButton chosenMethod;
+
+            if(groupBoxTransMethods.Enabled == false)
+                chosenMethod = groupBoxSubsMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Subs")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            else
+                chosenMethod = groupBoxTransMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Trans")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
             switch (chosenMethod.Name)
             {
@@ -90,6 +98,12 @@ namespace Cryptography_Exercises
                 case "radioButtonMatrixSub":
                     textBoxM.Text = "0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ -:,";
                     MatrixSubstitution.M = textBoxM.Text.ToCharArray();
+                    break;
+                case "radioButtonBlock":
+                    textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ 0123456789";
+                    break;
+                case "radioButtonFormat":
+                    textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ 0123456789";
                     break;
                 default:
                     break;
@@ -161,7 +175,12 @@ namespace Cryptography_Exercises
                 return;
             }
 
-            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            RadioButton chosenMethod;
+
+            if (groupBoxTransMethods.Enabled == false)
+                chosenMethod = groupBoxSubsMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Subs")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            else
+                chosenMethod = groupBoxTransMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Trans")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
             try
             {
@@ -180,6 +199,13 @@ namespace Cryptography_Exercises
                     case "radioButtonMatrixSub":
                         MatrixSubstitution.M = textBoxM.Text.ToCharArray();
                         MatrixSubstitution.Key = textBoxKey.Text;
+                        break;
+                    case "radioButtonBlock":
+                        TextBlockCipher.M = textBoxM.Text.ToCharArray();
+                        TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
+                        break;
+                    case "radioButtonFormat":
+                        throw new NotImplementedException();
                         break;
                     default:
                         break;
@@ -206,7 +232,12 @@ namespace Cryptography_Exercises
                     return;
                 }
 
-                var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+                RadioButton chosenMethod;
+
+                if (groupBoxTransMethods.Enabled == false)
+                    chosenMethod = groupBoxSubsMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Subs")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+                else
+                    chosenMethod = groupBoxTransMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Trans")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
                 if (radioButtonEncrypt.Checked)
                 {
@@ -228,6 +259,12 @@ namespace Cryptography_Exercises
                         case "radioButtonMatrixSub":
                             textBoxResult.Text = MatrixSubstitution.Encrypt(textBoxInput.Text);
 
+                            break;
+                        case "radioButtonBlock":
+                            textBoxResult.Text = TextBlockCipher.Encrypt(textBoxInput.Text);
+                            break;
+                        case "radioButtonFormat":
+                            throw new NotImplementedException();
                             break;
                         default:
                             break;
@@ -253,6 +290,12 @@ namespace Cryptography_Exercises
                         case "radioButtonMatrixSub":
                             textBoxResult.Text = MatrixSubstitution.Decrypt(textBoxInput.Text);
 
+                            break;
+                        case "radioButtonBlock":
+                            textBoxResult.Text = TextBlockCipher.Decrypt(textBoxInput.Text);
+                            break;
+                        case "radioButtonFormat":
+                            throw new NotImplementedException();
                             break;
                         default:
                             break;
@@ -282,7 +325,12 @@ namespace Cryptography_Exercises
                 return;
             }
 
-            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            RadioButton chosenMethod;
+
+            if (groupBoxTransMethods.Enabled == false)
+                chosenMethod = groupBoxSubsMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Subs")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            else
+                chosenMethod = groupBoxTransMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Trans")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
             try
             {
@@ -297,6 +345,12 @@ namespace Cryptography_Exercises
                         //if (textBoxKey.Text != MatrixSubstitution.Key)
                         MatrixSubstitution.Key = textBoxKey.Text;
 
+                        break;
+                    case "radioButtonBlock":
+                        TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
+                        break;
+                    case "radioButtonFormat":
+                        throw new NotImplementedException();
                         break;
                     default:
                         break;
@@ -313,7 +367,12 @@ namespace Cryptography_Exercises
 
         private void btnRandomKey_Click(object sender, EventArgs e)
         {
-            var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            RadioButton chosenMethod;
+
+            if (groupBoxTransMethods.Enabled == false)
+                chosenMethod = groupBoxSubsMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Subs")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+            else
+                chosenMethod = groupBoxTransMethods.Controls.OfType<TableLayoutPanel>().Where(x => x.Name.Contains("Trans")).Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
 
             try
             {
@@ -326,6 +385,13 @@ namespace Cryptography_Exercises
                     case "radioButtonMatrixSub":
                         textBoxKey.Text = MatrixSubstitution.GenerateKey();
                         MatrixSubstitution.Key = textBoxKey.Text;
+                        break;
+                    case "radioButtonBlock":
+                        textBoxKey.Text = new string(TextBlockCipher.GenerateKey());
+                        TextBlockCipher.Key = textBoxKey.Text.ToCharArray();
+                        break;
+                    case "radioButtonFormat":
+                        throw new NotImplementedException();
                         break;
                     default:
                         break;
@@ -352,6 +418,44 @@ namespace Cryptography_Exercises
         private void CryptoTest_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void radioButtonSubs_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxTransMethods.Enabled = false;
+            groupBoxSubsMethods.Enabled = true;
+        }
+
+        private void radioButtonTrans_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxSubsMethods.Enabled = false;
+            groupBoxTransMethods.Enabled = true;
+        }
+
+        private void groupBoxTransMethods_EnabledChanged(object sender, EventArgs e)
+        {
+            if (groupBoxTransMethods.Enabled == false) return;
+
+            textBoxM.Text = new string(TextBlockCipher.M);
+            if (radioButtonEncrypt.Checked)
+                textBoxInput.Text = TextBlockCipher.TestText;
+            else
+                textBoxInput.Text = TextBlockCipher.TestCrypto;
+
+            groupBoxKey.Enabled = true;
+            textBoxKey.Text = new string(TextBlockCipher.Key);
+        }
+
+        private void radioButtonBlock_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxM.Text = new string(TextBlockCipher.M);
+            if (radioButtonEncrypt.Checked)
+                textBoxInput.Text = TextBlockCipher.TestText;
+            else
+                textBoxInput.Text = TextBlockCipher.TestCrypto;
+
+            groupBoxKey.Enabled = true;
+            textBoxKey.Text = new string(TextBlockCipher.Key);
         }
     }
 }

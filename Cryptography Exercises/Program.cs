@@ -17,99 +17,99 @@ namespace Cryptography_Exercises
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CryptoTest());
 
-            do
-            {
-                Console.WriteLine("=============================");
-                Console.WriteLine("Изберете метод за криптиране:\n1. Шифър на Цезар\n2. Директно заместване\n3. Многоазбучно заместване\n4. Матрично заместване\n0. Изход\n");
-                Console.WriteLine("=============================");
-                var key = Console.ReadKey(true);
+            //do
+            //{
+            //    Console.WriteLine("=============================");
+            //    Console.WriteLine("Изберете метод за криптиране:\n1. Шифър на Цезар\n2. Директно заместване\n3. Многоазбучно заместване\n4. Матрично заместване\n0. Изход\n");
+            //    Console.WriteLine("=============================");
+            //    var key = Console.ReadKey(true);
 
-                if (!"01234".ToCharArray().Contains(key.KeyChar)) continue;
-                if (key.KeyChar == '0') Environment.Exit(0);
+            //    if (!"01234".ToCharArray().Contains(key.KeyChar)) continue;
+            //    if (key.KeyChar == '0') Environment.Exit(0);
 
-                Console.WriteLine("Въведете явния текст:\n");
-                var text = Console.ReadLine();
-                string encryptionResult = String.Empty;
-                string decryptionResult = String.Empty;
-                var directSubstResult = new Tuple<string, string>(string.Empty, string.Empty);
+            //    Console.WriteLine("Въведете явния текст:\n");
+            //    var text = Console.ReadLine();
+            //    string encryptionResult = String.Empty;
+            //    string decryptionResult = String.Empty;
+            //    var directSubstResult = new Tuple<string, string>(string.Empty, string.Empty);
 
-                try
-                {
-                    switch (key.KeyChar)
-                    {
-                        case '1':
-                            if(text == "")
-                                text = CaesarCipher.TestText;
+            //    try
+            //    {
+            //        switch (key.KeyChar)
+            //        {
+            //            case '1':
+            //                if(text == "")
+            //                    text = CaesarCipher.TestText;
 
-                            encryptionResult = CaesarCipher.Encrypt(text);
-                            decryptionResult = CaesarCipher.Decrypt(encryptionResult);
+            //                encryptionResult = CaesarCipher.Encrypt(text);
+            //                decryptionResult = CaesarCipher.Decrypt(encryptionResult);
 
-                            Console.WriteLine("\n\nЯвен текст:\n");
-                            Console.WriteLine(text + '\n');
-                            Console.WriteLine("\nРезултат от криптирането:\n");
-                            Console.WriteLine(encryptionResult + '\n');
-                            Console.WriteLine("\nРезултат от декриптирането:\n");
-                            Console.WriteLine(decryptionResult + "\n\n");
-                            break;
+            //                Console.WriteLine("\n\nЯвен текст:\n");
+            //                Console.WriteLine(text + '\n');
+            //                Console.WriteLine("\nРезултат от криптирането:\n");
+            //                Console.WriteLine(encryptionResult + '\n');
+            //                Console.WriteLine("\nРезултат от декриптирането:\n");
+            //                Console.WriteLine(decryptionResult + "\n\n");
+            //                break;
 
-                        case '2':
-                            if(text == "")
-                                text = DirectSubstitution.TestText;
+            //            case '2':
+            //                if(text == "")
+            //                    text = DirectSubstitution.TestText;
 
-                            directSubstResult = DirectSubstitution.Encrypt(text);
-                            decryptionResult = DirectSubstitution.Decrypt(directSubstResult.Item2); // или (directSubsResult.Item1, false), ако интервалите са некриптирани
+            //                directSubstResult = DirectSubstitution.Encrypt(text);
+            //                decryptionResult = DirectSubstitution.Decrypt(directSubstResult.Item2); // или (directSubsResult.Item1, false), ако интервалите са некриптирани
 
-                            Console.WriteLine("\n\nЯвен текст:\n");
-                            Console.WriteLine(text + '\n');
+            //                Console.WriteLine("\n\nЯвен текст:\n");
+            //                Console.WriteLine(text + '\n');
 
-                            Console.WriteLine("\n\nРезултат от криптирането (без шифроване на интервалите):\n");
-                            Console.WriteLine(directSubstResult.Item1 + '\n');
-                            Console.WriteLine("\n\nРезултат от криптирането (c шифроване на интервалите):\n");
-                            Console.WriteLine(directSubstResult.Item2 + '\n');
+            //                Console.WriteLine("\n\nРезултат от криптирането (без шифроване на интервалите):\n");
+            //                Console.WriteLine(directSubstResult.Item1 + '\n');
+            //                Console.WriteLine("\n\nРезултат от криптирането (c шифроване на интервалите):\n");
+            //                Console.WriteLine(directSubstResult.Item2 + '\n');
 
-                            Console.WriteLine("\nРезултат от декриптирането:\n");
-                            Console.WriteLine(decryptionResult + "\n\n");
-                            break;
+            //                Console.WriteLine("\nРезултат от декриптирането:\n");
+            //                Console.WriteLine(decryptionResult + "\n\n");
+            //                break;
 
-                        case '3':
-                            if(text == "")
-                                text = PolyalphabeticSubstitution.TestText;
+            //            case '3':
+            //                if(text == "")
+            //                    text = PolyalphabeticSubstitution.TestText;
 
-                            encryptionResult = PolyalphabeticSubstitution.Encrypt(text);
-                            decryptionResult = PolyalphabeticSubstitution.Decrypt(encryptionResult);
+            //                encryptionResult = PolyalphabeticSubstitution.Encrypt(text);
+            //                decryptionResult = PolyalphabeticSubstitution.Decrypt(encryptionResult);
 
-                            Console.WriteLine("\n\nЯвен текст:\n");
-                            Console.WriteLine(text + '\n');
+            //                Console.WriteLine("\n\nЯвен текст:\n");
+            //                Console.WriteLine(text + '\n');
 
-                            Console.WriteLine("\n\nРезултат от криптирането:\n");
-                            Console.WriteLine(encryptionResult + '\n');
-                            Console.WriteLine("\nРезултат от декриптирането:\n");
-                            Console.WriteLine(decryptionResult + "\n\n");
-                            break;
+            //                Console.WriteLine("\n\nРезултат от криптирането:\n");
+            //                Console.WriteLine(encryptionResult + '\n');
+            //                Console.WriteLine("\nРезултат от декриптирането:\n");
+            //                Console.WriteLine(decryptionResult + "\n\n");
+            //                break;
 
-                        case '4':
-                            if(text == "")
-                                text = MatrixSubstitution.TestText;
+            //            case '4':
+            //                if(text == "")
+            //                    text = MatrixSubstitution.TestText;
 
-                            encryptionResult = MatrixSubstitution.Encrypt(text);
-                            decryptionResult = MatrixSubstitution.Decrypt(encryptionResult);
+            //                encryptionResult = MatrixSubstitution.Encrypt(text);
+            //                decryptionResult = MatrixSubstitution.Decrypt(encryptionResult);
 
-                            Console.WriteLine("\n\nЯвен текст:\n");
-                            Console.WriteLine(text + '\n');
+            //                Console.WriteLine("\n\nЯвен текст:\n");
+            //                Console.WriteLine(text + '\n');
 
-                            Console.WriteLine("\n\nРезултат от криптирането:\n");
-                            Console.WriteLine(encryptionResult + '\n');
-                            Console.WriteLine("\nРезултат от декриптирането:\n");
-                            Console.WriteLine(decryptionResult + "\n\n");
-                            break;
-                    }
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message + '\n');
-                    continue;
-                }
-            } while (true);
+            //                Console.WriteLine("\n\nРезултат от криптирането:\n");
+            //                Console.WriteLine(encryptionResult + '\n');
+            //                Console.WriteLine("\nРезултат от декриптирането:\n");
+            //                Console.WriteLine(decryptionResult + "\n\n");
+            //                break;
+            //        }
+            //    }
+            //    catch (ArgumentException e)
+            //    {
+            //        Console.WriteLine(e.Message + '\n');
+            //        continue;
+            //    }
+            //} while (true);
 
         }
     }
