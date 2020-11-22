@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{98B9EB35-2F49-4558-88FF-9F553566642A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Cryptography_Exercises</RootNamespace>
-    <AssemblyName>Cryptography Exercises</AssemblyName>
+    <RootNamespace>Cryptography_Project</RootNamespace>
+    <AssemblyName>Cryptography Project</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -55,11 +55,13 @@
       <DependentUpon>AppGUIForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CaesarCipher.cs" />
+    <Compile Include="ColumnTransposition.cs" />
     <Compile Include="DirectSubstitution.cs" />
     <Compile Include="MatrixSubstitution.cs" />
     <Compile Include="PolyalphabeticSubstitution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBlockCipher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
