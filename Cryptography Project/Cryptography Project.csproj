@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{98B9EB35-2F49-4558-88FF-9F553566642A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Cryptography_Exercises</RootNamespace>
-    <AssemblyName>Cryptography Exercises</AssemblyName>
+    <RootNamespace>Cryptography_Project</RootNamespace>
+    <AssemblyName>Cryptography Project</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

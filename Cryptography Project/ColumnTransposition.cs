@@ -39,7 +39,7 @@ namespace Cryptography_Exercises
 
         public static char[] GenerateKey()
         {
-            int length = rng.Next(3, 10);
+            int length = rng.Next(3, 11);
             var keyArr = new char[length];
             var MCopy = M.ToList();
 
