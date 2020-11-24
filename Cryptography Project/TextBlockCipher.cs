@@ -15,12 +15,19 @@ namespace Cryptography_Exercises
             get => key;
             set
             {
+                for (int i = 0; i < value.Length; i++)
+                    if (value.Count(x => x == value[i]) > 1)
+                        throw new ArgumentException($"\nВъведеният ключ съдържа повтарящи се символи, което не е допустимо.");
+
                 List<int> digits = new List<int>(value.Length);
                 for (int i = 1; i < value.Length + 1; i++)
                     digits.Add(i);
 
                 foreach (var ch in value)
-                    if (!digits.Contains(int.Parse(ch.ToString()))) throw new ArgumentException($"\nВъведеният ключ трябва да съдържа числата от 1 до своя размер.");
+                {
+                    if(!int.TryParse(ch.ToString(), out int number)) throw new ArgumentException($"\nВъведеният ключ трябва да съдържа числата от 1 до своя размер.");
+                    if (!digits.Contains(number)) throw new ArgumentException($"\nВъведеният ключ трябва да съдържа числата от 1 до своя размер.");
+                }
 
                 key = value;
             }

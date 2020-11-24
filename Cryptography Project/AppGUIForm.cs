@@ -101,9 +101,11 @@ namespace Cryptography_Exercises
                     break;
                 case "radioButtonBlock":
                     textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ 0123456789";
+                    TextBlockCipher.M = textBoxM.Text.ToCharArray();
                     break;
                 case "radioButtonFormat":
                     textBoxM.Text = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ 0123456789";
+                    ColumnTransposition.M = textBoxM.Text.ToCharArray();
                     break;
                 default:
                     break;
