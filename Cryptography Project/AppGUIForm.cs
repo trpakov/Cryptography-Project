@@ -24,6 +24,7 @@ namespace Cryptography_Exercises
         {
             textBoxM.Text = new string(CaesarCipher.M);
             textBoxInput.Text = CaesarCipher.TestText;
+            numericUpDownOffset.Value = CaesarCipher.Offset;
 
             textBoxM.Text = new string(TextBlockCipher.M);
             textBoxInput.Text = TextBlockCipher.TestText;
@@ -36,7 +37,9 @@ namespace Cryptography_Exercises
                 textBoxInput.Text = CaesarCipher.TestText;
             else
                 textBoxInput.Text = CaesarCipher.TestCrypto;
+
             groupBoxKey.Enabled = false;
+            numericUpDownOffset.Enabled = !numericUpDownOffset.Enabled;
         }
 
         private void radioButtonDirectSubs_CheckedChanged(object sender, EventArgs e)
@@ -472,6 +475,11 @@ namespace Cryptography_Exercises
 
             groupBoxKey.Enabled = true;
             textBoxKey.Text = new string(ColumnTransposition.Key);
+        }
+
+        private void numericUpDownOffset_ValueChanged(object sender, EventArgs e)
+        {
+            CaesarCipher.Offset = (int)numericUpDownOffset.Value;
         }
     }
 }

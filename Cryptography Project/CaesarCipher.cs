@@ -8,6 +8,7 @@ namespace Cryptography_Exercises
         public static char[] M { get; set; } = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:/".ToCharArray();
         public const string TestText = "ФИРМА KARCHER ТЪРСИ ДА НАЕМЕ СКЛАД НАД 200 КВ.М.";
         public const string TestCrypto = "ЧЛУПГ:NDUFKHU:ХЯУФЛ:ЗГ:РГИПИ:ФНОГЗ:РГЗ:533:НЕ/П/";
+        public static int Offset { get; set; } = 3;
         public static string Encrypt(string plainText = TestText)
         {
             if (plainText.Length > 80) throw new ArgumentException("Допуска се явен текст с дължина не по-голяма от 80 символа.");
@@ -20,7 +21,7 @@ namespace Cryptography_Exercises
 
                 if (!M.Contains(plaintTextAsChars[i])) throw new ArgumentOutOfRangeException(plaintTextAsChars[i].ToString(), $"\nЯвният текст съдържа символа '{plaintTextAsChars[i]}', който не е част от множеството допустими символи.");
 
-                result[i] = M.ElementAt((Array.IndexOf(M, plaintTextAsChars[i]) + 3) % M.Length);
+                result[i] = M.ElementAt((Array.IndexOf(M, plaintTextAsChars[i]) + Offset) % M.Length);
             }
 
             return new String(result);
@@ -35,7 +36,7 @@ namespace Cryptography_Exercises
             {
                 if (!M.Contains(cryptogramAsChars[i])) throw new ArgumentOutOfRangeException(cryptogramAsChars[i].ToString(), $"\nКриптограмата съдържа символа '{cryptogramAsChars[i]}', който не е част от множеството допустими символи.");
 
-                int newIndex = (Array.IndexOf(M, cryptogramAsChars[i]) - 3) % M.Length;
+                int newIndex = (Array.IndexOf(M, cryptogramAsChars[i]) - Offset) % M.Length;
                 if (newIndex < 0) newIndex = M.Length - Math.Abs(newIndex);
 
                 result[i] = M.ElementAt(newIndex);
