@@ -119,7 +119,9 @@ namespace Cryptography_Exercises
         {
             groupBoxInput.Text = "Явен текст";
             btnAction.Text = "КРИПТИРАЙ";
-            textBoxInput.Text = textBoxResult.Text;
+
+            if(textBoxResult.Text != string.Empty)
+                textBoxInput.Text = textBoxResult.Text;
 
             //var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
             //
@@ -146,7 +148,9 @@ namespace Cryptography_Exercises
         {
             groupBoxInput.Text = "Криптограма";
             btnAction.Text = "ДЕКРИПТИРАЙ";
-            textBoxInput.Text = textBoxResult.Text;
+
+            if (textBoxResult.Text != string.Empty)
+                textBoxInput.Text = textBoxResult.Text;
 
             //var chosenMethod = groupBoxMethods.Controls.OfType<TableLayoutPanel>().Single().Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
             //
@@ -431,12 +435,81 @@ namespace Cryptography_Exercises
         {
             groupBoxTransMethods.Enabled = false;
             groupBoxSubsMethods.Enabled = true;
+
+            var chosenMethod = tableLayoutPanelSubs.Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+
+            switch (chosenMethod.Name)
+            {
+                case "radioButtonCaesar":
+                    textBoxM.Text = new string(CaesarCipher.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = CaesarCipher.TestText;
+                    else
+                        textBoxInput.Text = CaesarCipher.TestCrypto;
+
+                    groupBoxKey.Enabled = false;
+                    numericUpDownOffset.Enabled = !numericUpDownOffset.Enabled;
+                    break;
+                case "radioButtonDirectSubs":
+                    textBoxM.Text = new string(DirectSubstitution.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = DirectSubstitution.TestText;
+                    else
+                        textBoxInput.Text = DirectSubstitution.TestCrypto;
+                    groupBoxKey.Enabled = false;
+                    break;
+                case "radioButtonPolySub":
+                    textBoxM.Text = new string(PolyalphabeticSubstitution.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = PolyalphabeticSubstitution.TestText;
+                    else
+                        textBoxInput.Text = PolyalphabeticSubstitution.TestCrypto;
+                    groupBoxKey.Enabled = true;
+                    textBoxKey.Text = PolyalphabeticSubstitution.Key;
+                    break;
+                case "radioButtonMatrixSub":
+                    textBoxM.Text = new string(MatrixSubstitution.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = MatrixSubstitution.TestText;
+                    else
+                        textBoxInput.Text = MatrixSubstitution.TestCrypto;
+                    groupBoxKey.Enabled = true;
+                    textBoxKey.Text = MatrixSubstitution.Key;
+                    break;
+            }
         }
 
         private void radioButtonTrans_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxSubsMethods.Enabled = false;
             groupBoxTransMethods.Enabled = true;
+
+            var chosenMethod = tableLayoutPanelTrans.Controls.OfType<RadioButton>().Where(x => x.Checked).Single();
+
+            switch (chosenMethod.Name)
+            {
+                case "radioButtonBlock":
+                    textBoxM.Text = new string(TextBlockCipher.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = TextBlockCipher.TestText;
+                    else
+                        textBoxInput.Text = TextBlockCipher.TestCrypto;
+
+                    groupBoxKey.Enabled = true;
+                    textBoxKey.Text = new string(TextBlockCipher.Key);
+                    break;
+                case "radioButtonFormat":
+                    textBoxM.Text = new string(ColumnTransposition.M);
+                    if (radioButtonEncrypt.Checked)
+                        textBoxInput.Text = ColumnTransposition.TestText;
+                    else
+                        textBoxInput.Text = ColumnTransposition.TestCrypto;
+
+                    groupBoxKey.Enabled = true;
+                    textBoxKey.Text = new string(ColumnTransposition.Key);
+                    break;
+
+            }
         }
 
         private void groupBoxTransMethods_EnabledChanged(object sender, EventArgs e)
