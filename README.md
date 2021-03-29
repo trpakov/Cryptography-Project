@@ -31,17 +31,17 @@ II. [Цел и задачи на проекта](#цел-и-задачи-на-п
 
 III. [Програмна реализация](#програмна-реализация)
 
-  1. [CaesarCipher.cs](#caesarcipher.cs)
+  1. [CaesarCipher.cs](#caesarciphercs)
 
-  2. [DirectSubstitution.cs](#directsubstitution.cs)
+  2. [DirectSubstitution.cs](#directsubstitutioncs)
 
-  3. [PolyAlphabeticSubstitution.cs](#polyalphabeticsubstitution.cs)
+  3. [PolyAlphabeticSubstitution.cs](#polyalphabeticsubstitutioncs)
 
-  4. [MatrixSubstitution.cs](#matrixsubstitution.cs)
+  4. [MatrixSubstitution.cs](#matrixsubstitutioncs)
 
-  5. [TextBlockCipher.cs](#textblockcipher.cs)
+  5. [TextBlockCipher.cs](#textblockciphercs)
 
-  6. [ColumnTransposition.cs](#columntransposition.cs)
+  6. [ColumnTransposition.cs](#columntranspositioncs)
 
 IV. [Потребителски интерфейс](#потребителски-интерфейс)
 
